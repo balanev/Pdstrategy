@@ -1,4 +1,5 @@
 import axelrod as axl
+from axelrod.action import Action
 from pybrain.datasets import ClassificationDataSet
 
 def getdata(n=1000,
@@ -18,10 +19,10 @@ def getdata(n=1000,
                 r1 = []
                 r2 = []
                 for i in interaction[0]:
-                    if i == ('C', 'C'): r2.append(1), r2.append(1), r1.append('R') # CC R 1
-                    if i == ('D', 'D'): r2.append(-1), r2.append(-1), r1.append('P') # DD P 4
-                    if i == ('D', 'C'): r2.append(-1), r2.append(1), r1.append('T') # DC T 2
-                    if i == ('C', 'D'): r2.append(1), r2.append(-1), r1.append('S') # CD S 3
+                    if i == (Action.C, Action.C): r2.append(1), r2.append(1), r1.append('R') # CC R 1
+                    if i == (Action.D, Action.D): r2.append(-1), r2.append(-1), r1.append('P') # DD P 4
+                    if i == (Action.D, Action.C): r2.append(-1), r2.append(1), r1.append('T') # DC T 2
+                    if i == (Action.C, Action.D): r2.append(1), r2.append(-1), r1.append('S') # CD S 3
                 if r1 != (ld*['P']) and r1 != ld*['R'] and r1 != ld*['S'] and r1 != ld*['T']:
                     print('%i %i %s (%s) vs %s (%s): %s' % (k, j, player1, index_pair[0], player2, index_pair[1], r1))
                     ds.addSample(r2, (index_pair[0]))
